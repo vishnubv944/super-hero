@@ -8,21 +8,21 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    
+  
 </head>
 <body>
     <nav class="navbar bg-body-tertiary" id="header">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <img src="icon.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     Super Hero App
               </a>
           
           <form class="d-flex" role="search">
-            <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-
-            <!-- ADD HIDE CLASS TO SWITCH -->
-            <button class="btn btn-outline-success " type="submit">Favourites</button> 
-            <button class="btn btn-outline-success hide" type="submit">Search</button>
+            <a href="favPage.html" onclick="goToFav()" class="btn btn-outline-success" type="button">Favourites</a> 
+            <button onclick="goToSearch()" id="home"  class="btn btn-outline-success hide" type="button">Search</button>
           </form>
         </div>
     </nav>
@@ -31,21 +31,25 @@
 
         <nav id="search">
             <div class="search-container">
-                <!-- <img src="background-img.jpg" alt="" srcset="" width="100%" height="500px"> -->
-                <div class="search-button-container">
-                    <form class="d-flex search-button" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Enter the name..." aria-label="Search">
-                        <button class="btn bs-danger-text" type="submit" style="background-color: #80efc2;">Search</button>
-                    </form>
+                <h1>Know about your fav super hero</h1><br>
+                <div class="input-group">
+                  <label for="searchInput"></label>
+                  <div class="form-outline">
+                    
+                    <input id="searchInput" placeholder="Type the name..." type="search" id="form1" class="form-control"/>
+                  </div>
+                  <button onclick="searchFunc()" id="search-button" type="button" class="btn btn-primary"> Search </button>
+                  
                 </div>
             </div>
-    
         </nav>
+
+        
     
         <nav>
-            <div class="list-container">
+            <div class="list-container-search">
                 <br>
-                <div class="hide">
+                <div class="">
                     <h1 style="text-align: center;">Here are your search Results...</h1>
                 </div>
                 <br>
@@ -54,41 +58,22 @@
                     <div class="row">
                       <div class="col">
                         <div class="card" style="width: 18rem;">
-                            <img src="super-hero-image.jpg" class="card-img-top" alt="...">
+                            <img id="searchImg" src="" class="card-img-top" alt="...">
                             <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <h5 id="searchTitle" class="card-title">Card title</h5>
+                              <a  href="super-hero-page.html" class="btn btn-primary">Get More Details</a>
+                              <a id="favButton"  onclick="addToFav()" class="btn btn-primary">Add to Fav</a>
                             </div>
                           </div>
                       </div>
-                      <div class="col">
-                        <div class="card" style="width: 18rem;">
-                            <img src="super-hero-image.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                      </div>
-                      <div class="col">
-                        <div class="card" style="width: 18rem;">
-                            <img src="super-hero-image.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                          </div>
-                      </div>
+
                     </div>
                   </div>
             </div>
         </nav>
     </div>
 
-    <div class="fav-page hide">
+    <!-- <div class="fav-page">
 
         <div class="list-container">
             <br>
@@ -98,86 +83,20 @@
             <br>
             <br>
             <div class="container">
-                <div class="row">
-                  <div class="col mt-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="super-hero-image.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col mt-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="super-hero-image.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col mt-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="super-hero-image.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col mt-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="super-hero-image.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col mt-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="super-hero-image.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                  </div>
-                  <div class="col mt-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="super-hero-image.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="col mt-3">
-                    <div class="card" style="width: 18rem;">
-                        <img src="super-hero-image.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                  </div>
-                </div>
+                <div class="row" id="fav">
+                  
+                </div> 
               </div>
         </div>
 
 
+    </div> -->
+
+        </nav>
     </div>
-
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+  <script src="index.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </body>
 </html>
