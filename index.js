@@ -1,13 +1,3 @@
-// var favourites = [
-//     {
-//         "img": "https://www.superherodb.com/pictures2/portraits/10/100/1496.jpg",
-//         "title": "Batman"
-//     }
-// ];
-
- //window.sessionStorage.setItem("items", JSON.stringify(favourites));
-// var storedArray = JSON.parse(sessionStorage.getItem("items"))
-
 function fav(){
     let i = 1;
     $(".search-container").css("display", "none")
