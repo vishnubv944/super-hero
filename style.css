@@ -65,9 +65,37 @@
 }
 
 
+.card-body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.btn{
+    margin-top: 2px;
+}
+
+
 @media only screen and (max-width: 600px) {
+
+    html{
+        width: 375px !important;
+        margin: 0px !important;
+        padding: 0px !important;
+        white-space: normal !important;
+    }
+
+    body{
+        width: 100% !important;
+        overflow-x: hidden !important;
+        margin: 0px !important;
+        padding: 0px;
+    }
+    .form-outline{
+        width: 165px;
+    }
     .input-group{
-        margin-left: 8%;
+        margin-left: 19%;
     }
     .row{
         margin-left: 1rem !important;
