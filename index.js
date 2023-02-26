@@ -1,4 +1,4 @@
-const apiKey = 1422493045225633;
+const apiKey = "Your API Key";
 
 //function called when favorite page is loaded
 function fav(){
