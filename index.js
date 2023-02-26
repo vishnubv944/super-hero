@@ -1,3 +1,6 @@
+const apiKey = 1422493045225633;
+
+//function called when favorite page is loaded
 function fav(){
     let i = 1;
     $(".search-container").css("display", "none")
@@ -11,7 +14,6 @@ function fav(){
         div1.setAttribute('class' ,'col mt-3');
         let div2 = document.createElement('div');
         div2.setAttribute('class', 'card');
-        //div2.style('width', '18rem');
         div2.setAttribute('style', 'width: 18rem;')
         let im = document.createElement('img');
         im.setAttribute('src', item.img);
@@ -30,18 +32,13 @@ function fav(){
             let arr = JSON.parse(sessionStorage.getItem("items"))
             sessionStorage.removeItem("items")
             var remIndex = idxStr[7];
-            console.log(remIndex)
             arr.splice(remIndex-1, 1);
             window.sessionStorage.setItem("items", JSON.stringify(arr));
             cont.remove();
-            // <div class="row" id="fav">
-                  
-            // </div> 
             let favv = document.getElementById("favP");
             let div = document.createElement("div");
             div.setAttribute("class", "row")
             div.setAttribute("id", "fav");
-            console.log(favv)
             favv.appendChild(div)
             fav()
         }
@@ -60,11 +57,7 @@ function fav(){
     }
 }
 
-
-    
-    
-
-
+//function called when "Add to fav" button is clicked
 function addToFav(){
     let favImg = $('#searchImg');
     let favTitle = $('#searchTitle');
@@ -96,45 +89,95 @@ function addToFav(){
     
     
 
-    //console.log(favourites.length)
+
 }
 
 function goToSearch(){
     $('#favPage').addClass("hide")
-
-    // $('.list-container').removeAttr("style");
-    // $('.search-container').removeAttr("style");
-    // $('#home').addClass("hide")
 }
 
-
-
+//Autocomplete feature in search 
 $( function() {
     $( "#searchInput" ).autocomplete({
       source: superHeroList
     });
-  } );
+} );
+
+//function called to display the search result
+function displayCard(json){
+    let card = document.getElementById("addCard");
+    let colDiv = document.createElement("div");
+    colDiv.setAttribute("class", "col");
+    let div1 = document.createElement("div");
+    div1.setAttribute("class", "card");
+    div1.setAttribute("style", "width: 18rem;");
+    let img = document.createElement("img")
+    img.setAttribute("id", "searchImg")
+    img.setAttribute("src", json.image.url)
+    img.setAttribute("class", "card-img-top")
+    
+    let div2 = document.createElement("div");
+    div2.setAttribute("class", "card-body");
+
+    let h5 = document.createElement("h5");
+    h5.setAttribute("id", "searchTitle")
+    h5.setAttribute("class", "card-title");
+   
+    h5.innerHTML = json.name
+
+    let btnClass = document.createElement("div")
+    btnClass.setAttribute("class", "btn-class");
+
+    let a = document.createElement("a");
+    a.setAttribute("href", "super-hero-page.html");
+    a.setAttribute("class", "btn btn-primary");
+    a.innerHTML = "Know More"
+
+
+    let a2 = document.createElement("a");
+    a2.setAttribute("id", "favButton")
+    a2.onclick = function(){
+        addToFav();
+    }
+    a2.setAttribute("class", "btn btn-primary");
+    a2.innerHTML = "Fav"
+    
+
+    div2.appendChild(h5)
+    btnClass.appendChild(a)
+    btnClass.appendChild(a2)
+
+    div2.appendChild(btnClass)
+
+    div1.appendChild(img)
+    div1.appendChild(div2);
+
+    card.appendChild(colDiv);
+    card.appendChild(div1);
+
+
+    $("#searchImg").attr("src", json.image.url)
+    $("#searchTitle").text(json.name);
+}
 
 
 function searchFunc(){
     let name = document.getElementById("searchInput").value;
-    console.log(charNames[name]);
     onLoadSuperhero(charNames[name]);
     $(".list-container-search").css("display", "inherit")
 }
 
+//function called after search to make the AJAX request to super hero api
 function onLoadSuperhero(id){
     $.ajax({
-        url: "https://www.superheroapi.com/api.php/1422493045225633/" + id,
+        url: "https://www.superheroapi.com/api.php/" + apiKey + "/" + id,
         type: "GET",
         dataType : "json",
     })
     
     
     .done(function(json){
-        console.log(json)
-        $("#searchImg").attr("src", json.image.url)
-        $("#searchTitle").text(json.name);
+        displayCard(json)
         shd = json;
         localStorage.setItem("id", id);
     })
@@ -147,18 +190,17 @@ function onLoadSuperhero(id){
     })
 }
 
-
+//function called when "Super Hero Page" is loaded
 function loadSHPage(){
     id = localStorage.getItem("id");
     $.ajax({
-        url: "https://www.superheroapi.com/api.php/1422493045225633/" + id,
+        url: "https://www.superheroapi.com/api.php/" + apiKey + "/" + id,
         type: "GET",
         dataType : "json",
     })
     
     
     .done(function(json){
-        console.log(json)
         setData(json)
     })
         
@@ -170,9 +212,8 @@ function loadSHPage(){
     })
 }
 
-
+//function to set the details of the searched super hreo in the "Super Hero Page"
 function setData(jsonData){
-    console.log(jsonData)
     let data = jsonData
     $("#hero-img").attr("src", data.image.url)
     $("#name").text(data.name);
