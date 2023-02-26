@@ -13,7 +13,7 @@
 <h1 align="center">Super Hero Web App</h1>
 
   <p align="center">
-    <a href="https://vishnubv944.github.io/justDoIt/">View Demo</a>
+    <a href="#">View Demo</a>
     ·
     <a href="https://github.com/vishnubv944/super-hero/issues">Report Bug</a>
     ·
